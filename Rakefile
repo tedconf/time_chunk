@@ -15,10 +15,10 @@ require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "time_chunk"
-  gem.homepage = "http://github.com/alexdean/time_chunk"
+  gem.homepage = "http://github.com/tedconf/time_chunk"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = "Iterate over time ranges in discrete chunks."
+  gem.description = "Iterate over time ranges in discrete chunks."
   gem.email = "alex@crackpot.org"
   gem.authors = ["Alex Dean"]
   # dependencies defined in Gemfile
