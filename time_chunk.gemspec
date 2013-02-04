@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Alex Dean"]
   s.date = "2013-02-04"
-  s.description = "TODO: longer description of your gem"
+  s.description = "Iterate over time ranges in discrete chunks."
   s.email = "alex@crackpot.org"
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -27,13 +27,14 @@ Gem::Specification.new do |s|
     "VERSION",
     "lib/time_chunk.rb",
     "spec/spec_helper.rb",
-    "spec/time_chunk_spec.rb"
+    "spec/time_chunk_spec.rb",
+    "time_chunk.gemspec"
   ]
-  s.homepage = "http://github.com/alexdean/time_chunk"
+  s.homepage = "http://github.com/tedconf/time_chunk"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = "1.8.24"
-  s.summary = "TODO: one-line summary of your gem"
+  s.summary = "Iterate over time ranges in discrete chunks."
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
