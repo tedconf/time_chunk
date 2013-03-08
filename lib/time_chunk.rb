@@ -17,19 +17,29 @@ module TimeChunk
   end
 
   def self.iterate(range, step_size)
-    begin_time = range.first.is_a?(Time) ? range.first : Time.parse(range.first)
-    end_time = range.last.is_a?(Time) ? range.last : Time.parse(range.last)
-    raise ArgumentError, "Given range's begin (#{begin_time.iso8601}) is after its end (#{end_time.iso8601})." if begin_time > end_time
+    if range.first.is_a?(Time)
+      begin_at = range.first
+      end_at = range.last.is_a?(Time) ? range.last : Time.parse(range.last.to_s)
+    elsif range.first.is_a?(Date)
+      begin_at = range.first
+      end_at = range.last.is_a?(Date) ? range.last : Date.parse(range.last.to_s)
+      # step size is always seconds, regardless of whether range is Time or Date instances
+      step_size = step_size/86400
+    else
+      begin_at = Time.parse(range.first.to_s)
+      end_at = Time.parse(range.last.to_s)
+    end
 
-    current_end_time = begin_time - 1
+    raise ArgumentError, "Given range's begin (#{begin_at.to_time.utc.iso8601}) is after its end (#{end_at.to_time.utc.iso8601})." if begin_at > end_at
+
+    current_end = begin_at - 1
 
     begin
-      current_begin_time = current_end_time + 1
-      current_end_time = current_begin_time + step_size - 1
-      current_end_time = [current_end_time, end_time].min
+      current_begin = current_end + 1
+      current_end = current_begin + step_size - 1
+      current_end = [current_end, end_at].min
 
-      yield current_begin_time..current_end_time
-    end while current_end_time < end_time
+      yield current_begin..current_end
+    end while current_end < end_at
   end
-
 end

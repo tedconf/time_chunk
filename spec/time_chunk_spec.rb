@@ -88,6 +88,21 @@ describe TimeChunk do
         (t('2013-01-01T02:00:00Z')..t('2013-01-01T02:59:59Z')),
       ]
     end
+
+    it "should handle date arguments" do
+      TimeChunk.iterate(
+        Date.parse('2013-02-27')..Date.parse('2013-03-05'), 86400*2
+      ) do |range|
+        @calls << range
+      end
+
+      @calls.map(&:to_s).should eq [
+        '2013-02-27..2013-02-28',
+        '2013-03-01..2013-03-02',
+        '2013-03-03..2013-03-04',
+        '2013-03-05..2013-03-05'
+      ]
+    end
   end
 
   it "should iterate over each_day" do
