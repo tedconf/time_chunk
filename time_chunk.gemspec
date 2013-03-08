@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "time_chunk"
-  s.version = "0.0.1"
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Alex Dean"]
-  s.date = "2013-02-04"
+  s.date = "2013-03-08"
   s.description = "Iterate over time ranges in discrete chunks."
   s.email = "alex@crackpot.org"
   s.extra_rdoc_files = [
