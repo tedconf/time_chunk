@@ -105,17 +105,61 @@ describe TimeChunk do
     end
   end
 
-  it "should iterate over each_day" do
-    TimeChunk.each_day('2013-01-01T00:00:00Z'..'2013-01-04T23:59:59Z') do |range|
-      @calls << range
+  describe "each_day" do
+    it "should yield time ranges when given string arguments" do
+      TimeChunk.each_day('2013-01-01T00:00:00Z'..'2013-01-04T23:59:59Z') do |range|
+        @calls << range
+      end
+
+      @calls.should eq [
+        (t('2013-01-01T00:00:00Z')..t('2013-01-01T23:59:59Z')),
+        (t('2013-01-02T00:00:00Z')..t('2013-01-02T23:59:59Z')),
+        (t('2013-01-03T00:00:00Z')..t('2013-01-03T23:59:59Z')),
+        (t('2013-01-04T00:00:00Z')..t('2013-01-04T23:59:59Z')),
+      ]
     end
 
-    @calls.should eq [
-      (t('2013-01-01T00:00:00Z')..t('2013-01-01T23:59:59Z')),
-      (t('2013-01-02T00:00:00Z')..t('2013-01-02T23:59:59Z')),
-      (t('2013-01-03T00:00:00Z')..t('2013-01-03T23:59:59Z')),
-      (t('2013-01-04T00:00:00Z')..t('2013-01-04T23:59:59Z')),
-    ]
+    it "should yield date instances when given date range arguments" do
+      start = Date.parse('2013-05-15')
+      finish = Date.parse('2013-05-20')
+
+      TimeChunk.each_day(start..finish) {|date| @calls << date}
+
+      expected = ["2013-05-15", "2013-05-16", "2013-05-17", "2013-05-18", "2013-05-19", "2013-05-20"]
+      @calls.map(&:to_s).should eq expected
+    end
+
+    it "should raise an error if the start is after the finish" do
+      finish = Date.parse('2013-05-15')
+      start = Date.parse('2013-05-20')
+
+      expect {
+        TimeChunk.each_day(start..finish) {|date| @calls << date}
+      }.to raise_error ArgumentError, "Given range's begin (2013-05-20T05:00:00Z) is after its end (2013-05-15T05:00:00Z)."
+
+    end
+  end
+
+  describe "iterate_days" do
+    it "should iterate in chunks of the given number of days" do
+      start = Date.parse('2013-05-01')
+      finish = Date.parse('2013-05-31')
+
+      TimeChunk.iterate_days(start..finish, 5) do |range|
+        @calls << [range.first.to_s, range.last.to_s]
+      end
+
+      expected = [
+        ["2013-05-01", "2013-05-05"],
+        ["2013-05-06", "2013-05-10"],
+        ["2013-05-11", "2013-05-15"],
+        ["2013-05-16", "2013-05-20"],
+        ["2013-05-21", "2013-05-25"],
+        ["2013-05-26", "2013-05-30"],
+        ["2013-05-31", "2013-05-31"]
+      ]
+      @calls.should eq expected
+    end
   end
 
   it "should iterate over each_hour" do
