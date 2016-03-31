@@ -38,9 +38,6 @@ set -e
 # Update all our gems
 bundle install --without development
 
-export COVERAGE=on
-bundle exec rake spec
-
 # check for style violations
 # never fail the build at this step. let a jenkins post-build action do this
 # if necessary
@@ -58,9 +55,16 @@ bundle exec rubocop \
   --format RuboCop::Formatter::CheckstyleFormatter \
   --out tmp/checkstyle.xml || true
 
+# Setup the database
+bundle exec rake db:schema:load
+
+# run rspec tests
+export COVERAGE=on
+bundle exec rake spec
+
 # Security check
-# run this after other checks, so if it breaks a build, post-build steps
-# like summarizing rubocop output can still complete.
+# run this after other steps, so if it causes a failure, post-build steps like
+# summarizing rubocop checks or reporting # of tests run can still complete.
 ignores=""
 bundle exec bundle-audit update
 bundle exec bundle-audit check --ignore=${ignores}
