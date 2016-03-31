@@ -11,3 +11,11 @@ group :development do
   gem "bundler", "~> 1.2.0"
   gem "jeweler", "~> 1.8.4"
 end
+
+
+group :development, :test do
+  gem 'brakeman', require: false
+  gem 'bundler-audit'
+  gem 'rubocop', require: false
+  gem 'rubocop-checkstyle_formatter'
+end
