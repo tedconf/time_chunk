@@ -47,3 +47,8 @@ Rake::RDocTask.new do |rdoc|
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
+
+if ENV['COVERAGE']
+  require 'ci/reporter/rake/rspec'
+  task spec: 'ci:setup:rspec'
+end
