@@ -188,4 +188,17 @@ describe TimeChunk do
     ]
   end
 
+  it "should iterate over each_month" do
+    start = Date.parse('2013-05-01')
+    finish = Date.parse('2013-05-31')
+
+    TimeChunk.iterate_days(start..finish, 5) do |range|
+      @calls << [range.first.to_s, range.last.to_s]
+    end
+
+    TimeChunk.each_month('2011-01-01T00:00:00Z'..'2013-12-20T00:00:00Z') do |range|
+      puts range.inspect
+    end
+  end
+
 end

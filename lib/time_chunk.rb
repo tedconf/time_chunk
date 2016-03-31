@@ -1,4 +1,5 @@
 require 'time'
+require 'date'
 
 module TimeChunk
 
@@ -19,6 +20,39 @@ module TimeChunk
     # otherwise yield a range like all other methods do.
     else
       iterate(range, 86400, &Proc.new)
+    end
+  end
+
+  # start at 1st day of range's beginning month
+  # yield each month's 1..(end_date) range, as Date instances
+  # don't yield a Date > the range's end
+  def self.each_month(range)
+
+    begin_at = range.first
+    end_at = range.last
+
+    if ! begin_at.is_a?(Date)
+      begin_at = Date.parse(range.first.to_s)
+    end
+    if ! end_at.is_a?(Date)
+      end_at = Date.parse(range.last.to_s)
+    end
+
+    (begin_at.year..end_at.year).each do |year|
+      (1..12).each do |month|
+
+        done = false
+        if year == end_at.year && month == end_at.month
+          last_day = end_at.day
+          done = true
+        else
+          last_day = days_in_month(year, month)
+        end
+
+        yield Date.new(year,month,1) .. Date.new(year,month,last_day)
+
+        return if done
+      end
     end
   end
 
@@ -63,6 +97,12 @@ module TimeChunk
     end
 
     iterate(range, step_size*86400, &Proc.new)
+  end
+
+  def self.days_in_month(year, month)
+    # move to the last day of the month & return the day.
+    # http://stackoverflow.com/questions/1489826/how-to-get-the-number-of-days-in-a-given-month-in-ruby-accounting-for-year
+    (Date.new(year, 12, 31) << (12-month)).day
   end
 
 end
