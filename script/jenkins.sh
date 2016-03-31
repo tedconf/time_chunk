@@ -38,9 +38,6 @@ set -e
 # Update all our gems
 bundle install --without development
 
-# Setup the database
-bundle exec rake db:schema:load
-
 # Security check
 ignores=""
 bundle exec bundle-audit update
