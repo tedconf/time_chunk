@@ -71,6 +71,7 @@ bundle exec bundle-audit check --ignore=${ignores}
 
 # Security scan
 # See http://brakemanscanner.org/docs/ignoring_false_positives/ to ignore anything reported here.
-bundle exec brakeman -z --format html --output build/brakeman.html
+# Skipping brakeman, not a rails app
+# bundle exec brakeman -z --format html --output build/brakeman.html
 
 exit 0
