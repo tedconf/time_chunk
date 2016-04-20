@@ -56,7 +56,7 @@ bundle exec rubocop \
   --out tmp/checkstyle.xml || true
 
 # Setup the database
-bundle exec rake db:schema:load
+# bundle exec rake db:schema:load
 
 # run rspec tests
 export COVERAGE=on
