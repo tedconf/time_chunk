@@ -13,6 +13,7 @@ group :development do
 end
 
 group :development, :test do
+  gem 'rake'
   gem 'brakeman', require: false
   gem 'bundler-audit'
   gem 'rubocop', require: false

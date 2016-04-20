@@ -83,6 +83,7 @@ DEPENDENCIES
   bundler-audit
   ci_reporter_rspec
   jeweler (~> 1.8.4)
+  rake
   rdoc (~> 3.12)
   rspec (~> 2.0)
   rubocop
