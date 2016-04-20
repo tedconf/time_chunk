@@ -133,8 +133,10 @@ describe TimeChunk do
 
     it 'should raise an error if the start is after the finish' do
       finish = Date.parse('2013-05-15')
+      finish_str = finish.to_time.utc.iso8601
       start = Date.parse('2013-05-20')
-      err = 'Given range\'s begin (2013-05-20T04:00:00Z) is after its end (2013-05-15T04:00:00Z).'
+      start_str = start.to_time.utc.iso8601
+      err = "Given range's begin (#{start_str}) is after its end (#{finish_str})."
 
       expect {
         TimeChunk.each_day(start..finish) { |date| @calls << date }
