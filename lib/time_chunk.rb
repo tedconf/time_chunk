@@ -1,5 +1,6 @@
 require 'time'
 
+# Time Chunk Implementation
 module TimeChunk
 
   def self.each_minute(range)
@@ -15,10 +16,10 @@ module TimeChunk
   def self.each_day(range)
     # if we're given a date range, yield individual dates instead of a range.
     if range.begin.is_a?(Date)
-      iterate(range, 86400) {|chunk| yield chunk.begin }
+      iterate(range, 86_400) { |chunk| yield chunk.begin }
     # otherwise yield a range like all other methods do.
     else
-      iterate(range, 86400, &Proc.new)
+      iterate(range, 86_400, &Proc.new)
     end
   end
 
@@ -29,7 +30,7 @@ module TimeChunk
   # String arguments will be parsed into Times, and yield Time ranges.
   # Date ranges will yield Date ranges. Note that step_size is always in seconds
   #   even for date ranges. If this feels weird, see iterate_days instead.
-  def self.iterate(range, step_size)
+  def self.iterate(range, step_size) # rubocop:disable MethodLength, PerceivedComplexity, CyclomaticComplexity, AbcSize, LineLength
     if range.first.is_a?(Time)
       begin_at = range.first
       end_at = range.last.is_a?(Time) ? range.last : Time.parse(range.last.to_s)
@@ -37,32 +38,33 @@ module TimeChunk
       begin_at = range.first
       end_at = range.last.is_a?(Date) ? range.last : Date.parse(range.last.to_s)
       # step size is always seconds, regardless of whether range is Time or Date instances
-      step_size = step_size/86400
+      step_size /= 86_400
     else
       begin_at = Time.parse(range.first.to_s)
       end_at = Time.parse(range.last.to_s)
     end
 
-    raise ArgumentError, "Given range's begin (#{begin_at.to_time.utc.iso8601}) is after its end (#{end_at.to_time.utc.iso8601})." if begin_at > end_at
+    raise ArgumentError, "Given range's begin (#{begin_at.to_time.utc.iso8601}) is after its end (#{end_at.to_time.utc.iso8601})." if begin_at > end_at # rubocop:disable LineLength
 
     current_end = begin_at - 1
 
-    begin
+    loop do
       current_begin = current_end + 1
       current_end = current_begin + step_size - 1
       current_end = [current_end, end_at].min
 
       yield current_begin..current_end
-    end while current_end < end_at
+      break if current_end < end_at
+    end
   end
 
   # Same as iterate, but with step_size specified in days instead of seconds.
   def self.iterate_days(range, step_size)
-    if ! range.begin.is_a?(Date) || ! range.end.is_a?(Date)
-      raise ArgumentError, "iterate_days requires a range of dates."
+    if !range.begin.is_a?(Date) || !range.end.is_a?(Date)
+      raise ArgumentError, 'iterate_days requires a range of dates.'
     end
 
-    iterate(range, step_size*86400, &Proc.new)
+    iterate(range, step_size * 86_400, &Proc.new)
   end
 
 end
