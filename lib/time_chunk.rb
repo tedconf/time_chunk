@@ -54,7 +54,7 @@ module TimeChunk
       current_end = [current_end, end_at].min
 
       yield current_begin..current_end
-      break if current_end < end_at
+      break unless current_end < end_at
     end
   end
 
