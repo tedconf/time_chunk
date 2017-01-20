@@ -100,3 +100,13 @@ end
 2013-05-26 .. 2013-05-30
 2013-05-31 .. 2013-05-31
 ```
+
+Tag for hackweek glossary: 
+
+<!--- project_def -->
+Details on how to display a time range in discrete chunks.
+
+Vertical: Tools
+
+Related links: https://github.com/tedconf/time_chunk
+<!--- /project_def -->
