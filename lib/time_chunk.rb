@@ -1,4 +1,5 @@
 require 'time'
+require 'time_chunk/version'
 
 # Time Chunk Implementation
 module TimeChunk

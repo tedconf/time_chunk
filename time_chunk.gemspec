@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name = 'time_chunk'
-  s.version = '1.0.0'
+  s.version = TimeChunk::VERSION
 
   if s.respond_to? :required_rubygems_version=
     s.required_rubygems_version = Gem::Requirement.new('>= 0')
