@@ -3,7 +3,6 @@ require 'time_chunk/version'
 
 # Time Chunk Implementation
 module TimeChunk
-
   def self.each_minute(range)
     # &Proc.new : return a proc containing the block passed to the method
     # http://www.ruby-doc.org/core-1.9.3/Proc.html#method-c-new
@@ -67,5 +66,4 @@ module TimeChunk
 
     iterate(range, step_size * 86_400, &Proc.new)
   end
-
 end

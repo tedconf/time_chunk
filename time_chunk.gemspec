@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 
-Gem::Specification.new do |s|
+Gem::Specification.new do |s| # rubocop:disable Metrics/BlockLength
   s.name = 'time_chunk'
   s.version = TimeChunk::VERSION
 
@@ -11,22 +11,19 @@ Gem::Specification.new do |s|
   s.date = '2013-05-17'
   s.description = 'Iterate over time ranges in discrete chunks.'
   s.email = 'alex@crackpot.org'
-  s.extra_rdoc_files = [
-    'LICENSE.txt',
-    'README.md'
-  ]
-  s.files = [
-    '.document',
-    '.rspec',
-    'Gemfile',
-    'LICENSE.txt',
-    'README.md',
-    'Rakefile',
-    'VERSION',
-    'lib/time_chunk.rb',
-    'spec/spec_helper.rb',
-    'spec/time_chunk_spec.rb',
-    'time_chunk.gemspec'
+  s.extra_rdoc_files = %w[LICENSE.txt README.md]
+  s.files = %w[
+    .document
+    .rspec
+    Gemfile
+    LICENSE.txt
+    README.md
+    Rakefile
+    lib/time_chunk.rb
+    lib/time_chunk/version.rb
+    spec/spec_helper.rb
+    spec/time_chunk_spec.rb
+    time_chunk.gemspec
   ]
   s.homepage = 'http://github.com/tedconf/time_chunk'
   s.licenses = ['MIT']
