@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+
 require File.expand_path('../lib/time_chunk/version', __FILE__)
 
 Gem::Specification.new do |s| # rubocop:disable Metrics/BlockLength
