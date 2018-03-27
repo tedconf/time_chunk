@@ -12,9 +12,9 @@ end
 
 group :development, :test do
   gem 'rspec', '~> 2.0'
-  gem 'rake'
   gem 'brakeman', require: false
   gem 'bundler-audit'
+  gem 'rake', '~> 11.0' # due to last_comment deprecation regarding rspec
   gem 'rubocop', require: false
   gem 'rubocop-checkstyle_formatter'
   gem 'ci_reporter_rspec', require: false
