@@ -1,3 +1,5 @@
+[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=tedconf/time_chunk&identifier=8018759)](https://dependabot.com)
+
 # time_chunk
 
 Iterate over a time range in discrete chunks.
@@ -101,7 +103,7 @@ end
 2013-05-31 .. 2013-05-31
 ```
 
-Tag for hackweek glossary: 
+Tag for hackweek glossary:
 
 <!--- project_def -->
 Details on how to display a time range in discrete chunks.
