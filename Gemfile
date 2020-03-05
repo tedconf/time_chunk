@@ -14,7 +14,7 @@ group :development, :test do
   gem 'brakeman', require: false
   gem 'bundler-audit'
   gem 'ci_reporter_rspec', require: false
-  gem 'rake', '~> 11.0' # due to last_comment deprecation regarding rspec
+  gem 'rake', '~> 13.0'
   gem 'rspec', '~> 2.0'
   gem 'rubocop', require: false
   gem 'rubocop-checkstyle_formatter'
