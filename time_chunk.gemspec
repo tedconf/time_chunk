@@ -33,7 +33,7 @@ Gem::Specification.new do |s| # rubocop:disable Metrics/BlockLength
   s.rubygems_version = '1.8.24'
   s.summary = 'Iterate over time ranges in discrete chunks.'
 
-  s.add_development_dependency 'rspec', '~> 2.8.0'
-  s.add_development_dependency 'rdoc', '~> 3.12'
+  s.add_development_dependency 'rspec'
+  s.add_development_dependency 'rdoc'
   s.add_development_dependency 'bundler', '~> 1.2.0'
 end

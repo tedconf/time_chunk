@@ -7,15 +7,15 @@ source 'https://rubygems.org'
 # Include everything needed to run rake, tests, features, etc.
 group :development do
   gem 'bundler', '>= 1.2.0'
-  gem 'rdoc', '~> 3.12'
+  gem 'rdoc'
 end
 
 group :development, :test do
   gem 'brakeman', require: false
   gem 'bundler-audit'
   gem 'ci_reporter_rspec', require: false
-  gem 'rake', '~> 13.0'
-  gem 'rspec', '~> 2.0'
+  gem 'rake'
+  gem 'rspec'
   gem 'rubocop', require: false
   gem 'rubocop-checkstyle_formatter'
 end
