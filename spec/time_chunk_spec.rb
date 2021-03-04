@@ -18,7 +18,7 @@ describe TimeChunk do
         @calls << range
       end
 
-      @calls.should eq [
+      expect(@calls).to eq [
         (t('2013-01-01T00:00:00Z')..t('2013-01-01T00:59:59Z')),
         (t('2013-01-01T01:00:00Z')..t('2013-01-01T01:59:59Z')),
         (t('2013-01-01T02:00:00Z')..t('2013-01-01T02:59:59Z'))
@@ -32,7 +32,7 @@ describe TimeChunk do
         @calls << range
       end
 
-      @calls.should eq [
+      expect(@calls).to eq [
         (t('2013-01-01T00:00:00Z')..t('2013-01-01T00:30:00Z'))
       ]
     end
@@ -44,7 +44,7 @@ describe TimeChunk do
         @calls << range
       end
 
-      @calls.should eq [
+      expect(@calls).to eq [
         (t('2013-01-01T00:00:00Z')..t('2013-01-01T00:59:59Z')),
         (t('2013-01-01T01:00:00Z')..t('2013-01-01T01:59:59Z')),
         (t('2013-01-01T02:00:00Z')..t('2013-01-01T02:29:59Z'))
@@ -69,7 +69,7 @@ describe TimeChunk do
         @calls << range
       end
 
-      @calls.should eq [
+      expect(@calls).to eq [
         (t('2013-01-01T00:00:00Z')..t('2013-01-01T00:59:59Z')),
         (t('2013-01-01T01:00:00Z')..t('2013-01-01T01:59:59Z')),
         (t('2013-01-01T02:00:00Z')..t('2013-01-01T02:29:59Z'))
@@ -83,7 +83,7 @@ describe TimeChunk do
         @calls << range
       end
 
-      @calls.should eq [
+      expect(@calls).to eq [
         (t('2013-01-01T00:00:00Z')..t('2013-01-01T00:59:59Z')),
         (t('2013-01-01T01:00:00Z')..t('2013-01-01T01:59:59Z')),
         (t('2013-01-01T02:00:00Z')..t('2013-01-01T02:59:59Z'))
@@ -97,7 +97,7 @@ describe TimeChunk do
         @calls << range
       end
 
-      @calls.map(&:to_s).should eq [
+      expect(@calls.map(&:to_s)).to eq [
         '2013-02-27..2013-02-28',
         '2013-03-01..2013-03-02',
         '2013-03-03..2013-03-04',
@@ -112,7 +112,7 @@ describe TimeChunk do
         @calls << range
       end
 
-      @calls.should eq [
+      expect(@calls).to eq [
         (t('2013-01-01T00:00:00Z')..t('2013-01-01T23:59:59Z')),
         (t('2013-01-02T00:00:00Z')..t('2013-01-02T23:59:59Z')),
         (t('2013-01-03T00:00:00Z')..t('2013-01-03T23:59:59Z')),
@@ -128,7 +128,7 @@ describe TimeChunk do
 
       expected = ['2013-05-15', '2013-05-16', '2013-05-17',
                   '2013-05-18', '2013-05-19', '2013-05-20']
-      @calls.map(&:to_s).should eq expected
+      expect(@calls.map(&:to_s)).to eq expected
     end
 
     it 'should raise an error if the start is after the finish' do
@@ -163,7 +163,7 @@ describe TimeChunk do
         ['2013-05-26', '2013-05-30'],
         ['2013-05-31', '2013-05-31']
       ]
-      @calls.should eq expected
+      expect(@calls).to eq expected
     end
   end
 
@@ -172,7 +172,7 @@ describe TimeChunk do
       @calls << range
     end
 
-    @calls.should eq [
+    expect(@calls).to eq [
       (t('2013-01-01T00:00:00Z')..t('2013-01-01T00:59:59Z')),
       (t('2013-01-01T01:00:00Z')..t('2013-01-01T01:59:59Z')),
       (t('2013-01-01T02:00:00Z')..t('2013-01-01T02:59:59Z'))
@@ -184,7 +184,7 @@ describe TimeChunk do
       @calls << range
     end
 
-    @calls.should eq [
+    expect(@calls).to eq [
       (t('2013-01-01T00:00:00Z')..t('2013-01-01T00:00:59Z')),
       (t('2013-01-01T00:01:00Z')..t('2013-01-01T00:01:59Z')),
       (t('2013-01-01T00:02:00Z')..t('2013-01-01T00:02:59Z')),
