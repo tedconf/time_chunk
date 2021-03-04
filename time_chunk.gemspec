@@ -41,6 +41,10 @@ Gem::Specification.new do |s| # rubocop:disable Metrics/BlockLength
   s.add_development_dependency 'brakeman'
   s.add_development_dependency 'bundler-audit'
   s.add_development_dependency 'ci_reporter_rspec'
+  # this app is publich and thus uses rubocop globally instead of
+  # ted's internal rules gem - Gohn
   s.add_development_dependency 'rubocop'
   s.add_development_dependency 'rubocop-checkstyle_formatter'
+  s.add_development_dependency 'rubocop-rake'
+  s.add_development_dependency 'rubocop-rspec'
 end
