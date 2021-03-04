@@ -1,6 +1,8 @@
-version: 1.0
+version: 1.3
 vertical: Tools
 production:
   endpoint_url:
 staging:
   endpoint_url:
+ci_url: https://jenkins.ted.com/job/tools_vertical/job/time_chunk/
+support_level: Full
